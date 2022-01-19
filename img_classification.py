@@ -1,10 +1,13 @@
 import keras
 from PIL import Image, ImageOps
 import numpy as np
+import urllib.request
 
+urllib.request.urlretrieve(
+        'https://awsforheroku.s3.amazonaws.com/model.best.hdf5', 'model.best.hdf5')
 
 def classification(img,loadmodel):
-    loadmodel = 'model.best.hdf5'
+    loadmodel = './model.best.hdf5'
     model =  keras.models.load_model(loadmodel)
     data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
     image = img
